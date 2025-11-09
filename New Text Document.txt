@@ -1,106 +1,120 @@
 import java.util.*;
-class Salarysystem{
-	public static void main(String args[]){
-		Scanner input=new Scanner(System.in);
-		System.out.println("========================================");
-		System.out.println("========Salary Information System=======");
-		System.out.println("========================================");
-		System.out.println();
-		System.out.println("\t[1]. Calculate Income tax");
-		System.out.println("\t[2]. Calculate Anual Bonus");
-		System.out.println("\t[3]. Calculate Loan Amount");
-		System.out.println("\t[4]. Exit.");
-		System.out.println();
-		System.out.print("Input an option > : ");
-		int op=input.nextInt();
-		
-		System.out.println();
-		System.out.println();
-		switch(op){
-			case 1 :{
-					System.out.println("------------------------------"); 
-					System.out.print("Input a salary : ");
-					double salary=input.nextInt();
-					double tax=0;
-					if(salary<=100000){
-						tax=0;
-					}else if(salary<=141667){
-						tax=0+(salary-100000)*0.06;
-					}else if(salary<183333){
-						tax=2500+(salary-141667)*0.12;
-					}else if(salary<=225000){
-						tax=7500+(salary-183333)*0.18;
-					}else if(salary<=266666){
-						tax=15000+(salary-225000)*0.24;
-					}else if(salary<=308333){
-						tax=25000+(salary-266666)*0.30;
-					}else{
-						tax=37500+(salary-308333)*0.36;
-					}
-					double netSalaty=salary-tax;
-					System.out.println("Gross salary : "+salary); 
-					System.out.println("Income tax   : "+tax); 
-					System.out.println("Net Salary   : "+netSalaty); 
-					System.out.println("------------------------------"); 
-				}
-				break;
-			case 2 :{
-					System.out.println("------------------------------"); 
-					System.out.print("Input a salary : ");
-					double salary=input.nextInt();
-					double bonus=0;
-					if(salary>=400000){
-						bonus=salary*0.35;
-					}else if(salary<=300000){
-						bonus=salary*0.2;
-					}else if(salary<=200000){
-						bonus=salary*0.15;
-					}else if(salary<=100000){
-						bonus=salary*0.1;
-					}else{
-						bonus=5000;
-					}
-					double netSalary=salary+bonus;
-					System.out.println("Gross salary : "+salary); 
-					System.out.println("Bonus amount : "+bonus); 
-					System.out.println("Net Salary   : "+netSalary);
-					System.out.println("------------------------------"); 
-				}			
-				break;
-			case 3 :{
-				System.out.println("------------------------------"); 
-				System.out.print("Input your Name : ");
-				input.nextLine();
-				String name=input.nextLine();
-				
-				System.out.print("Input a salary  : ");
-				double salary=input.nextInt();
-				
-				System.out.print("Enter no of years : ");
-				double noOfYears=input.nextInt();
-				double noOfInstallment=noOfYears*12;
-				double rate=15.0;
-				double monthlyInstallment=salary*0.6;
-				
-				double loanAmount=0;
-				
-				if(salary<=50000){
-					System.out.println("Salary less than 50000...");
-				}else{
-					loanAmount=monthlyInstallment*(1-1/Math.pow((1+(rate/12)),noOfInstallment)/rate/12);
-				}
-				System.out.println("You can get loan amount : "+loanAmount); 
-				System.out.println("-----------------------------"); 
-			}break;
-			
-			case 4 :
-				break;
-			default:
-				System.out.println("Wrong option.....");
-		}	
-		System.out.println("Exited...");
-	}
+
+class SalarySystem {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int option;
+
+        do {
+            System.out.println("========================================");
+            System.out.println("======== Salary Information System =====");
+            System.out.println("========================================");
+            System.out.println("\t[1] Calculate Income Tax");
+            System.out.println("\t[2] Calculate Bonus");
+            System.out.println("\t[3] Loan Eligibility");
+            System.out.println("\t[4] EPF/ETF Deductions");
+            System.out.println("\t[5] Salary Grade");
+            System.out.println("\t[6] Exit");
+            System.out.print("Select an option: ");
+            option = input.nextInt();
+            System.out.println();
+
+            switch (option) {
+                case 1 -> {
+                    System.out.print("Enter your salary: ");
+                    double salary = input.nextDouble();
+                    double tax = 0;
+
+                    if (salary <= 100000) tax = 0;
+                    else if (salary <= 141667) tax = (salary - 100000) * 0.06;
+                    else if (salary <= 183333) tax = 2500 + (salary - 141667) * 0.12;
+                    else if (salary <= 225000) tax = 7500 + (salary - 183333) * 0.18;
+                    else if (salary <= 266666) tax = 15000 + (salary - 225000) * 0.24;
+                    else if (salary <= 308333) tax = 25000 + (salary - 266666) * 0.30;
+                    else tax = 37500 + (salary - 308333) * 0.36;
+
+                    double netSalary = salary - tax;
+                    System.out.println("Gross Salary: " + salary);
+                    System.out.println("Income Tax: " + tax);
+                    System.out.println("Net Salary: " + netSalary);
+                    System.out.println("----------------------------------------");
+                }
+
+                case 2 -> {
+                    System.out.print("Enter your salary: ");
+                    double salary = input.nextDouble();
+                    double bonus;
+
+                    if (salary >= 400000) bonus = salary * 0.35;
+                    else if (salary >= 300000) bonus = salary * 0.20;
+                    else if (salary >= 200000) bonus = salary * 0.15;
+                    else if (salary >= 100000) bonus = salary * 0.10;
+                    else bonus = 5000;
+
+                    double netSalary = salary + bonus;
+                    System.out.println("Gross Salary: " + salary);
+                    System.out.println("Bonus: " + bonus);
+                    System.out.println("Net Salary: " + netSalary);
+                    System.out.println("----------------------------------------");
+                }
+
+                case 3 -> {
+                    input.nextLine(); // consume newline
+                    System.out.print("Enter your name: ");
+                    String name = input.nextLine();
+                    System.out.print("Enter your salary: ");
+                    double salary = input.nextDouble();
+                    System.out.print("Enter number of years: ");
+                    int years = input.nextInt();
+
+                    if (salary < 50000) {
+                        System.out.println("Sorry, salary too low for loan eligibility.");
+                    } else {
+                        double monthlyInstallment = salary * 0.6;
+                        double rate = 15.0 / 100 / 12;
+                        int months = years * 12;
+                        double loanAmount = monthlyInstallment * (1 - (1 / Math.pow(1 + rate, months))) / rate;
+
+                        System.out.println("Eligible Loan Amount: " + loanAmount);
+                    }
+                    System.out.println("----------------------------------------");
+                }
+
+                case 4 -> {
+                    System.out.print("Enter your salary: ");
+                    double salary = input.nextDouble();
+                    double epf = salary * 0.08;
+                    double etf = salary * 0.03;
+                    double netSalary = salary - epf - etf;
+
+                    System.out.println("EPF Deduction (8%): " + epf);
+                    System.out.println("ETF Deduction (3%): " + etf);
+                    System.out.println("Net Salary after EPF/ETF: " + netSalary);
+                    System.out.println("----------------------------------------");
+                }
+
+                case 5 -> {
+                    System.out.print("Enter your salary: ");
+                    double salary = input.nextDouble();
+                    String grade;
+
+                    if (salary >= 500000) grade = "Executive";
+                    else if (salary >= 300000) grade = "Senior";
+                    else if (salary >= 150000) grade = "Mid-Level";
+                    else if (salary >= 75000) grade = "Junior";
+                    else grade = "Entry-Level";
+
+                    System.out.println("Your Salary Grade: " + grade);
+                    System.out.println("----------------------------------------");
+                }
+
+                case 6 -> System.out.println("Exiting the system...");
+
+                default -> System.out.println("Invalid option. Please try again.");
+            }
+
+        } while (option != 6);
+
+        System.out.println("Thank you for using the Salary Information System!");
+    }
 }
-
-
-			  
